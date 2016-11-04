@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FattoApp</string>
+
+    <!--通用操作-->
+    <string name="action_ok">确定</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_save">保存</string>
+    <string name="action_retry">重试</string>
+    <string name="action_search">搜索</string>
+    <string name="action_submit">提交</string>
+    <string name="action_feed">反馈</string>
+    <string name="action_back">返回</string>
+    <string name="action_next_step">下一步</string>
+    <string name="action_previous_step">上一步</string>
+</resources>

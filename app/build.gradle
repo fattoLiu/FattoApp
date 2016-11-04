@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId               rootProject.ext.android.applicationId
+        versionCode                 rootProject.ext.android.versionCode
+        versionName                 rootProject.ext.android.versionName
+        minSdkVersion               rootProject.ext.android.minSdkVersion
+        targetSdkVersion            rootProject.ext.android.targetSdkVersion
+        testInstrumentationRunner   rootProject.ext.android.testInstrumentationRunner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile rootProject.ext.dependencies["filetree"]
+    compile rootProject.ext.dependencies["appcompat-v7"]
+    compile rootProject.ext.dependencies["design"]
+    compile rootProject.ext.dependencies["recycleview"]
+    compile rootProject.ext.dependencies["butterknife"]
+    apt     rootProject.ext.dependencies["apt-butterknife"]
+
+    testCompile rootProject.ext.dependencies["junit"]
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}

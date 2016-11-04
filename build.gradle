@@ -1,0 +1,22 @@
+apply from: "app_config.gradle"
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.0'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8' // 要用butterknife,需添加这行
+
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
