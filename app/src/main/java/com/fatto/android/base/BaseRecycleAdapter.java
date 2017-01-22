@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TODO re
+ * TODO 基础recyclerview适配器
  *
  * @author fattoliu
  * @version V 1.0

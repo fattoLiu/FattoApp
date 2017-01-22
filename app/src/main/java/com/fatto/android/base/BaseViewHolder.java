@@ -6,7 +6,7 @@ import android.view.View;
 import butterknife.ButterKnife;
 
 /**
- * TODO
+ * TODO 基础RecyclerView 中的ViewHolder
  *
  * @author fattoliu
  * @version V 1.0

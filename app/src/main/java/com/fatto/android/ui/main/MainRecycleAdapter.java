@@ -1,4 +1,4 @@
-package com.fatto.android.main;
+package com.fatto.android.ui.main;
 
 import android.view.LayoutInflater;
 import android.view.View;

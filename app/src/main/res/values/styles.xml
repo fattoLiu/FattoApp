@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-        <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -10,11 +10,15 @@
     <!-- toolbar菜单样式 -->
     <style name="ToolbarTheme.Light" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <item name="actionMenuTextColor">@color/white</item>
+        <!-- 溢出菜单图标颜色-->
+        <item name="colorControlNormal">@color/yellow_500</item>
     </style>
 
     <!-- toolbar菜单样式 -->
     <style name="ToolbarTheme.Dark" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <item name="actionMenuTextColor">@color/color_text</item>
-    </style>
+        <!-- 溢出菜单图标颜色-->
+        <item name="colorControlNormal">@color/color_text</item>
 
+    </style>
 </resources>

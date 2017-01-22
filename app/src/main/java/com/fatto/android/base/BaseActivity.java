@@ -1,5 +1,6 @@
 package com.fatto.android.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,8 @@ import static com.fatto.android.R.id.tv_title;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
+    protected final String TAG = "FATTO_APP";
+
     /**
      * 标题
      */
@@ -57,16 +60,16 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract String getTitleResource();
 
     /**
+     * 初始化操作(布局和数据)
+     */
+    protected abstract void init();
+
+    /**
      * 获取菜单资源
      *
      * @return
      */
     protected abstract int getMenuResource();
-
-    /**
-     * 初始化操作(布局和数据)
-     */
-    protected abstract void init();
 
     /**
      * 菜单选中事件回调
@@ -76,7 +79,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 关闭界面事件回调
      */
-    protected abstract void onActFinish();
+    protected abstract void onFinish();
 
 
     @Override
@@ -115,7 +118,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        onActFinish();
+        onFinish();
     }
 
 
@@ -161,12 +164,49 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param msg   toast要显示的文本
      * @param isShort   true:短toast false:长toast
      */
-    protected void toastShort(String msg, boolean isShort) {
+    protected void toast(String msg, boolean isShort) {
         Toast.makeText(this, msg, isShort ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG).show();
     }
 
-    protected void toActivity() {
-
+    /**
+     * 跳转Activity
+     * @param targetClass   目标activity
+     */
+    protected void toActivity(Class targetClass) {
+        toActivity(targetClass, new Intent(), false);
     }
+
+
+
+    /**
+     * 跳转Activity
+     * @param targetClass    目标 activity
+     * @param intent       intent 意图
+     * @param finish    是否关闭当前 activity
+     */
+    protected void toActivity(Class targetClass, Intent intent, boolean finish) {
+        if (intent != null) {
+            intent.setClass(this, targetClass);
+        } else {
+            throw new NullPointerException("Intent is null");
+        }
+        startActivity(intent);
+        if (finish) finish();
+    }
+
+    /**
+     * 跳转Activity
+     * @param targetClass      目标 activity
+     * @param bundle     数据对象
+     * @param finish    是否关闭当前 activity
+     */
+    protected void toActivity(Class targetClass, Bundle bundle, boolean finish) {
+        Intent intent = new Intent(this, targetClass);
+        intent.putExtras(bundle);
+        startActivity(intent);
+
+        if (finish) finish();
+    }
+
 
 }

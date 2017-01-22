@@ -21,6 +21,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+        }
+    }
 }
 
 dependencies {
@@ -29,10 +34,10 @@ dependencies {
     compile rootProject.ext.dependencies["design"]
     compile rootProject.ext.dependencies["recycleview"]
     compile rootProject.ext.dependencies["butterknife"]
-    apt     rootProject.ext.dependencies["apt-butterknife"]
-
+    apt rootProject.ext.dependencies["apt-butterknife"]
     testCompile rootProject.ext.dependencies["junit"]
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile 'com.google.code.gson:gson:2.8.0'
 }
