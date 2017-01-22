@@ -34,7 +34,6 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.ryv_main)
     RecyclerView ryv_main;
-//    private List<MainBean> list;
     private MainRecycleAdapter adapter;
     private LinearLayoutManager llm;
     private List<MainBean> function = new ArrayList<>();
@@ -47,15 +46,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init() {
-//        list = new ArrayList<>();
-//        for (MainBean bean : function) {
-//            list.add(bean);
-//        }
-//        for (int i = 0; i < 20; i++) {
-//            MainBean bean  =  new MainBean("标题" + i, "内容" + i);
-//            list.add(bean);
-//
-//        }
         addFunction();
         adapter = new MainRecycleAdapter(function);
         llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
