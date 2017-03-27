@@ -37,15 +37,15 @@ public class MainActivity extends BaseActivity {
     private MainRecycleAdapter adapter;
     private LinearLayoutManager llm;
     private List<MainBean> function = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setDisplayHomeAsUpEnabled();
-
     }
 
     @Override
-    protected void init() {
+    protected void initViewsAndDatas() {
         addFunction();
         adapter = new MainRecycleAdapter(function);
         llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity {
         ryv_main.addOnItemTouchListener(new OnRecyclerItemClickListener(ryv_main) {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh, int position) {
-                toast("onItemClick: " + position, true);
+                toastShort("onItemClick: " + position);
                 itemClick(position);
             }
 
@@ -75,12 +75,12 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected String getTitleResource() {
+    protected String getTitleName() {
         return getString(R.string.app_name);
     }
 
     @Override
-    protected int getMenuResource() {
+    protected int getMenu() {
         return R.menu.menu_main;
     }
 
@@ -88,7 +88,7 @@ public class MainActivity extends BaseActivity {
     protected void onMenuItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_search:
-                toast("搜索", true);
+                toastShort("搜索");
                 ryv_main.setLayoutManager(new GridLayoutManager(this, 4));
                 adapter.notifyDataSetChanged();
                 break;
@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void onFinish() {
+    protected void onBackKeyPressed() {
 
     }
 
@@ -119,6 +119,9 @@ public class MainActivity extends BaseActivity {
             case Constants.ITEM_HTTPS_URL_CONNECTION:   //HttpsUrlConnection实现HTTPS
                 toActivity(HTTPSHttpsURLConnectionActivity.class);
                 break;
+
+            case Constants.ITEM_NDK:   //NDK开发
+                break;
         }
     }
 
@@ -126,6 +129,5 @@ public class MainActivity extends BaseActivity {
         function.add(new MainBean("线程、队列测试", "消息队列测试"));
         function.add(new MainBean("retrofit 学习", "retrofit 框架学习"));
         function.add(new MainBean("HttpsUrlConnection实现HTTPS 通信 学习", "https 通信、证书..."));
-        function.add(new MainBean("AAC录音", " android 录制 aac 格式录音文件"));
     }
 }

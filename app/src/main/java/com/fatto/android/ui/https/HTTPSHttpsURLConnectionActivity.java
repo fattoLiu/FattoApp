@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.fatto.android.R;
 import com.fatto.android.base.BaseActivity;
-import com.fatto.android.utils.HttpsUtils;
+import com.fatto.android.utils.HttpsUtil;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -53,17 +53,17 @@ public class HTTPSHttpsURLConnectionActivity extends BaseActivity {
     }
 
     @Override
-    protected String getTitleResource() {
-        return getString(R.string.https_httpsurlconnection);
+    protected String getTitleName() {
+        return getString(R.string.title_https_httpsurlconnection);
     }
 
     @Override
-    protected void init() {
+    protected void initViewsAndDatas() {
 
     }
 
     @Override
-    protected int getMenuResource() {
+    protected int getMenu() {
         return 0;
     }
 
@@ -73,7 +73,7 @@ public class HTTPSHttpsURLConnectionActivity extends BaseActivity {
     }
 
     @Override
-    protected void onFinish() {
+    protected void onBackKeyPressed() {
 
     }
 
@@ -87,31 +87,31 @@ public class HTTPSHttpsURLConnectionActivity extends BaseActivity {
                 try {
 //                    CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
 //                    Certificate cert = certificateFactory.generateCertificate(certStream);
-//                    LogUtils.LOGD("cert key ====== " + cert.getPublicKey().toString());
+//                    LogUtil.LOGD("cert key ====== " + cert.getPublicKey().toString());
 //                    // 生成一个包含服务器端证书的 keystore
 //                    String keyStoreType = KeyStore.getDefaultType();
-//                    LogUtils.LOGD("keystore type ====== " + keyStoreType);
+//                    LogUtil.LOGD("keystore type ====== " + keyStoreType);
 //                    KeyStore keyStore = KeyStore.getInstance(keyStoreType);
 //                    keyStore.load(null,null);
 //                    keyStore.setCertificateEntry("cert", cert);
 //
 //                    // 用包含服务端正式的 keystore 生成一个TrustManager
 //                    String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-//                    LogUtils.LOGD("tmfAlgorithm ====== " + tmfAlgorithm);
+//                    LogUtil.LOGD("tmfAlgorithm ====== " + tmfAlgorithm);
 //                    TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(tmfAlgorithm);
-//                    trustManagerFactory.init(keyStore);
+//                    trustManagerFactory.initViewsAndDatas(keyStore);
 //
 //                    // 生成一个使用我们的TrustManager的SSLContext
 //                    SSLContext sslContext = SSLContext.getInstance("TLS");
-//                    sslContext.init(null, trustManagerFactory.getTrustManagers(), null);
+//                    sslContext.initViewsAndDatas(null, trustManagerFactory.getTrustManagers(), null);
 
                     URL url = new URL(httpsUrl);
                     HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
-                    httpsURLConnection.setSSLSocketFactory(/*sslContext.getSocketFactory()*/HttpsUtils.getSSLSocketFactory(certStream));
+                    httpsURLConnection.setSSLSocketFactory(/*sslContext.getSocketFactory()*/HttpsUtil.getSSLSocketFactory(certStream));
                     httpsURLConnection.setHostnameVerifier(new HostnameVerifier() {
                         @Override
                         public boolean verify(String hostname, SSLSession session) {
-                            if (hostname.equals("10.80.19.15")) {
+                            if ("10.80.19.15".equals(hostname) || "kyfw.12306.cn".equals(hostname)) {
                                 return true;
                             }
                             return  false;
@@ -150,7 +150,7 @@ public class HTTPSHttpsURLConnectionActivity extends BaseActivity {
                 super.onPostExecute(result);
                 tv_result.setText(result);
             }
-        }.execute(hcboxHttpsUrl);
+        }.execute(httpsUrl);
     }
 
     @OnClick(R.id.btn_call_https)
@@ -158,7 +158,7 @@ public class HTTPSHttpsURLConnectionActivity extends BaseActivity {
         String certName = "tomcat.crt";
         String hcboxcertName = "tomcat.cer";
         try {
-            getSafeFromServer(new BufferedInputStream(getAssets().open(hcboxcertName)));
+            getSafeFromServer(new BufferedInputStream(getAssets().open(certName)));
         } catch (IOException e) {
             e.printStackTrace();
         }

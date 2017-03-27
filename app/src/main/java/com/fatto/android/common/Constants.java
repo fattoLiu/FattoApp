@@ -13,5 +13,6 @@ public class Constants {
     public static final int ITEM_THREAD_QUEUE = 0;
     public static final int ITEM_RETROFIT_BASE = 1;
     public static final int ITEM_HTTPS_URL_CONNECTION = 2;
-    public static final int ITEM_HTTPS_OK_HTTP_3 = 3;
+    public static final int ITEM_AAC_RECORDER = 3;
+    public static final int ITEM_NDK = 4;
 }

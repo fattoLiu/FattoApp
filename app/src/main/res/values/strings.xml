@@ -13,7 +13,9 @@
     <string name="action_next_step">下一步</string>
     <string name="action_previous_step">上一步</string>
     <string name="title_retrofit">Retrofit 学习</string>
-    <string name="call_https">访问 https 网页</string>
-    <string name="https_httpsurlconnection">HttpsUrlConnection实现HTTPS 访问</string>
-    <string name="act_title_aac_record">AAC录音</string>
+    <string name="title_call_https">访问 https 网页</string>
+    <string name="title_https_httpsurlconnection">HttpsUrlConnection实现HTTPS 访问</string>
+    <string name="title_aac_record">AAC录音</string>
+    <string name="time_consuming">耗时操作</string>
+    <string name="testaccessibility">accessibilityDemo</string>
 </resources>

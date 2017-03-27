@@ -2,11 +2,11 @@
 
 ext {
     android = [
-            compileSdkVersion           :   24,
-            buildToolsVersion           :   "24.0.2",
+            compileSdkVersion           :   25,
+            buildToolsVersion           :   "25.0.2",
             applicationId               :   "com.fatto.android",
             minSdkVersion               :   15,
-            targetSdkVersion            :   24,
+            targetSdkVersion            :   25,
             versionCode                 :   1,
             versionName                 :   "1.0",
             testInstrumentationRunner   :   "android.support.test.runner.AndroidJUnitRunner"
@@ -15,11 +15,14 @@ ext {
     dependencies = [
             "filetree"                  :   fileTree(include: ['*.jar'], dir: 'libs'),
             "junit"                     :   "junit:junit:4.12",
-            "appcompat-v7"              :   "com.android.support:appcompat-v7:24.2.1",
-            "design"                    :   "com.android.support:design:24.2.1",
-            "recycleview"               :   "com.android.support:recyclerview-v7:24.2.1",
+            "appcompat-v7"              :   "com.android.support:appcompat-v7:25.1.0",
+            "design"                    :   "com.android.support:design:25.1.0",
+            "recycleview"               :   "com.android.support:recyclerview-v7:25.1.0",
             "butterknife"               :   "com.jakewharton:butterknife:8.4.0",
-            "apt-butterknife"           :   "com.jakewharton:butterknife-compiler:8.4.0"
+            "apt-butterknife"           :   "com.jakewharton:butterknife-compiler:8.4.0",
+            "retrofit"                  :   "com.squareup.retrofit2:retrofit:2.1.0",
+            "gson"                      :   "com.google.code.gson:gson:2.8.0",
+            "retrofit:converter-gson"   :   "com.squareup.retrofit2:converter-gson:2.1.0"
     ]
 
 }

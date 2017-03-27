@@ -30,17 +30,17 @@ import static com.fatto.android.R.id.tv_title;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    protected final String TAG = "FATTO_APP";
-
     /**
      * 标题
      */
     @BindView(tv_title)
+    @Nullable
     TextView mTitle;
     /**
      * 工具栏
      */
     @BindView(R.id.toolbar)
+    @Nullable
     Toolbar mToolbar;
 
     //*********************************** 抽象方法,子类去实现 ***********************************
@@ -57,19 +57,19 @@ public abstract class BaseActivity extends AppCompatActivity {
      *
      * @return
      */
-    protected abstract String getTitleResource();
+    protected abstract String getTitleName();
 
     /**
      * 初始化操作(布局和数据)
      */
-    protected abstract void init();
+    protected abstract void initViewsAndDatas();
 
     /**
      * 获取菜单资源
      *
      * @return
      */
-    protected abstract int getMenuResource();
+    protected abstract int getMenu();
 
     /**
      * 菜单选中事件回调
@@ -77,9 +77,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void onMenuItemSelected(MenuItem item);
 
     /**
-     * 关闭界面事件回调
+     * 点击返回键操作
      */
-    protected abstract void onFinish();
+    protected abstract void onBackKeyPressed();
 
 
     @Override
@@ -95,16 +95,16 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         // 初始化标题
         if (mTitle != null) {
-            mTitle.setText(TextUtils.isEmpty(getTitleResource()) ? "" : getTitleResource());
+            mTitle.setText(TextUtils.isEmpty(getTitleName()) ? "" : getTitleName());
         }
 
-        init();
+        initViewsAndDatas();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (getMenuResource() != 0) {
-            getMenuInflater().inflate(getMenuResource(), menu);
+        if (getMenu() != 0) {
+            getMenuInflater().inflate(getMenu(), menu);
         }
         return super.onCreateOptionsMenu(menu);
     }
@@ -118,7 +118,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        onFinish();
+        onBackKeyPressed();
     }
 
 
@@ -136,8 +136,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 设置toolbar显示navigation
-     * @param iconRes     图标资源
-     * @param listener    图标点击事件
+     *
+     * @param iconRes  图标资源
+     * @param listener 图标点击事件
      */
     protected void setNavigation(int iconRes, View.OnClickListener listener) {
         if (mToolbar != null) {
@@ -153,6 +154,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 设置标题
+     *
      * @param title
      */
     protected void setTitle(String title) {
@@ -160,29 +162,39 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 弹出toast
-     * @param msg   toast要显示的文本
-     * @param isShort   true:短toast false:长toast
+     * 弹出short toast
+     *
+     * @param msg     toast要显示的文本
      */
-    protected void toast(String msg, boolean isShort) {
-        Toast.makeText(this, msg, isShort ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG).show();
+    protected void toastShort(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 弹出long toast
+     *
+     * @param msg     toast要显示的文本
+     */
+    protected void toastLong(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
     /**
      * 跳转Activity
-     * @param targetClass   目标activity
+     *
+     * @param targetClass 目标activity
      */
     protected void toActivity(Class targetClass) {
         toActivity(targetClass, new Intent(), false);
     }
 
 
-
     /**
      * 跳转Activity
-     * @param targetClass    目标 activity
-     * @param intent       intent 意图
-     * @param finish    是否关闭当前 activity
+     *
+     * @param targetClass 目标 activity
+     * @param intent      intent 意图
+     * @param finish      是否关闭当前 activity
      */
     protected void toActivity(Class targetClass, Intent intent, boolean finish) {
         if (intent != null) {
@@ -196,15 +208,15 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 跳转Activity
-     * @param targetClass      目标 activity
-     * @param bundle     数据对象
-     * @param finish    是否关闭当前 activity
+     *
+     * @param targetClass 目标 activity
+     * @param bundle      数据对象
+     * @param finish      是否关闭当前 activity
      */
     protected void toActivity(Class targetClass, Bundle bundle, boolean finish) {
         Intent intent = new Intent(this, targetClass);
         intent.putExtras(bundle);
         startActivity(intent);
-
         if (finish) finish();
     }
 

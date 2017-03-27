@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@drawable/selector_button_green"
-        android:text="@string/call_https"
+        android:text="@string/title_call_https"
         android:textColor="@color/white" />
 
     <ScrollView

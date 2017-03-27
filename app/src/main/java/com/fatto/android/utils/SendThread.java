@@ -1,6 +1,6 @@
 package com.fatto.android.utils;
 
-import static com.fatto.android.utils.LogUtils.LOGE;
+import static com.fatto.android.utils.LogUtil.LOGE;
 
 /**
  * TODO 线程队列执行测试的线程类
