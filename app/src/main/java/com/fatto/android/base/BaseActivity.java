@@ -16,6 +16,7 @@ import com.fatto.android.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 import static com.fatto.android.R.id.tv_title;
 
@@ -118,6 +119,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Unbinder unbinder = ButterKnife.bind(this);
+        unbinder.unbind();
         onBackKeyPressed();
     }
 

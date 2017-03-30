@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".ui.https.HTTPSHttpsURLConnectionActivity" />
         <activity android:name=".ui.retrofit.RetrofitActivity" />
+        <activity android:name=".ui.okhttp.OkhttpActivity" />
+        <activity android:name=".ui.pulltorefresh.PullToRefreshActivity" />
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.jakewharton.butterknife'
+
 
 android {
 
@@ -48,7 +49,7 @@ dependencies {
     compile rootProject.ext.dependencies["gson"]
     compile rootProject.ext.dependencies["retrofit:converter-gson"]
 
-    apt rootProject.ext.dependencies["apt-butterknife"]
+    annotationProcessor rootProject.ext.dependencies["apt-butterknife"]
 
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'

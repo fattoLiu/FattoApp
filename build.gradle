@@ -6,8 +6,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8' // 要用butterknife,需添加这行
-
+//        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8' // 要用butterknife,需添加这行
+        classpath 'com.jakewharton:butterknife-gradle-plugin:8.5.1'
     }
 }
 

@@ -23,6 +23,4 @@ public class FattoApp extends Application {
         }
         LeakCanary.install(this);
     }
-
-
 }

@@ -12,6 +12,8 @@ import com.fatto.android.base.BaseActivity;
 import com.fatto.android.beans.MainBean;
 import com.fatto.android.common.Constants;
 import com.fatto.android.ui.https.HTTPSHttpsURLConnectionActivity;
+import com.fatto.android.ui.okhttp.OkhttpActivity;
+import com.fatto.android.ui.pulltorefresh.PullToRefreshActivity;
 import com.fatto.android.ui.retrofit.RetrofitActivity;
 import com.fatto.android.utils.MyQueue;
 import com.fatto.android.utils.SendThread;
@@ -36,7 +38,7 @@ public class MainActivity extends BaseActivity {
     RecyclerView ryv_main;
     private MainRecycleAdapter adapter;
     private LinearLayoutManager llm;
-    private List<MainBean> function = new ArrayList<>();
+    private List<MainBean> functionList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initViewsAndDatas() {
         addFunction();
-        adapter = new MainRecycleAdapter(function);
+        adapter = new MainRecycleAdapter(functionList);
         llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         ryv_main.setLayoutManager(llm);
         //设置Item增加、移除动画
@@ -97,7 +99,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onBackKeyPressed() {
-
+        finish();
     }
 
     private void itemClick(int position) {
@@ -112,7 +114,7 @@ public class MainActivity extends BaseActivity {
                 thread.start();
                 break;
 
-            case Constants.ITEM_RETROFIT_BASE:  // retrofit
+            case Constants.ITEM_RETROFIT_BASE:  // retrofit 学习
                 toActivity(RetrofitActivity.class);
                 break;
 
@@ -120,14 +122,20 @@ public class MainActivity extends BaseActivity {
                 toActivity(HTTPSHttpsURLConnectionActivity.class);
                 break;
 
-            case Constants.ITEM_NDK:   //NDK开发
+            case Constants.ITEM_OKHTTP3:   //okhttp 学习
+                toActivity(OkhttpActivity.class);
+                break;
+            case Constants.ITEM_PULLTOREFRESH:   //下拉刷新列表
+                toActivity(PullToRefreshActivity.class);
                 break;
         }
     }
 
     private void addFunction() {
-        function.add(new MainBean("线程、队列测试", "消息队列测试"));
-        function.add(new MainBean("retrofit 学习", "retrofit 框架学习"));
-        function.add(new MainBean("HttpsUrlConnection实现HTTPS 通信 学习", "https 通信、证书..."));
+        functionList.add(new MainBean("线程、队列测试", "消息队列测试"));
+        functionList.add(new MainBean("retrofit 学习", "retrofit 框架学习"));
+        functionList.add(new MainBean("HttpsUrlConnection实现HTTPS 通信 学习", "https 通信、证书..."));
+        functionList.add(new MainBean("okhttp框架学习", " okhttp get/post 请求、上传、下载等功能实现"));
+        functionList.add(new MainBean("PullToRefresh", "自定义下拉刷新列表"));
     }
 }
